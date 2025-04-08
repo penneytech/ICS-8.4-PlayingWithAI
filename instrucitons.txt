@@ -1,0 +1,10 @@
+Using AI, create a simple HTML / CSS (and maybe JS) appliation of your choice. 
+ 
+In your initial prompt, include the following instructions at the end of the prompt:
+"I want you to seaparate the code into index.html, script.js and style.css files"
+
+So for example:
+
+"Make me an app that lets me play simon says using four buttons. I want you to seaparate the code into index.html, script.js and style.css files"
+
+Copy the results and paste them in the proper windows here to see if your app works!
