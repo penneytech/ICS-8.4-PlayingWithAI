@@ -1,4 +1,160 @@
-html, body {
-  height: 100%;
-  width: 100%;
+/* Define CSS variables for player colors */
+:root {
+  --player-x-color: #a2d2ff; /* Default Pastel Blue */
+  --player-o-color: #ffafcc; /* Default Pastel Pink */
+  --background-color: #e0f7fa; /* Light Cyan */
+  --container-bg-color: #ffffff;
+  --board-bg-color: #f1f8e9; /* Light Green */
+  --border-color: #b0bec5;   /* Blue Grey Lighten-3 */
+  --text-color: #455a64;     /* Blue Grey Darken-1 */
+  --status-color: #37474f;   /* Blue Grey Darken-2 */
+  --button-bg-color: #c8e6c9; /* Pastel Green */
+  --button-hover-bg-color: #a5d6a7; /* Darker Pastel Green */
+  --cell-hover-bg: #e8f5e9;   /* Lighter Green */
+  --board-size: 12; /* Define board size for CSS */
 }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align top for larger board */
+  min-height: 100vh;
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 20px; /* More padding */
+  box-sizing: border-box;
+}
+
+.game-container {
+  text-align: center;
+  background-color: var(--container-bg-color);
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  width: 95%;
+  max-width: 700px; /* Allow container to be wider */
+}
+
+h1 {
+  margin-bottom: 10px; /* Less margin */
+  font-size: 1.8em; /* Adjust size */
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.color-selectors {
+  display: flex;
+  justify-content: center; /* Center pickers */
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 20px; /* More gap */
+}
+
+.color-picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-picker label {
+  font-size: 0.9em; /* Slightly smaller */
+  color: var(--text-color);
+}
+
+.color-picker input[type="color"] {
+  width: 30px; /* Adjust size */
+  height: 30px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 2px;
+  background-color: var(--container-bg-color);
+}
+.color-picker input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+.color-picker input[type="color"]::-webkit-color-swatch { border: none; border-radius: 4px; }
+.color-picker input[type="color"]::-moz-color-swatch { border: none; border-radius: 4px; }
+
+.score-board {
+  margin-bottom: 10px;
+  font-size: 1.6em; /* Adjust size */
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.score-x { color: var(--player-x-color); transition: color 0.3s ease; }
+.score-o { color: var(--player-o-color); transition: color 0.3s ease; }
+
+.status {
+  margin-bottom: 15px;
+  font-size: 1.1em; /* Adjust size */
+  font-weight: 500;
+  min-height: 1.3em;
+  color: var(--status-color);
+}
+
+.game-board {
+  display: grid;
+  /* Create 12 columns */
+  grid-template-columns: repeat(var(--board-size), 1fr);
+  width: 100%;
+  max-width: 600px; /* Max width for the board itself */
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 20px auto;
+  border: 2px solid var(--border-color); /* Keep outer border */
+  background-color: var(--board-bg-color);
+  border-radius: 5px; /* Less rounded for tighter grid */
+  overflow: hidden;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+}
+
+.cell {
+  /* Width/Height determined by grid */
+  border: 1px solid var(--border-color); /* Thinner border for 12x12 */
+  /* Remove specific borders for grid effect */
+   border-top: none;
+   border-left: none;
+  /* Apply right/bottom borders correctly for 12 columns */
+  &:nth-child(12n) { /* Every 12th cell (right column) */
+     border-right: none;
+  }
+  /* Indices 133 to 144 (12*11+1 to 12*12) */
+  &:nth-child(n+133) { /* Bottom row */
+     border-bottom: none;
+  }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em; /* Adjust as needed */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+  user-select: none;
+  color: transparent;
+  line-height: 1; /* <<< ADD THIS LINE */
+}
+/* Apply color using the variable when class is added */
+.cell.x { color: var(--player-x-color); }
+.cell.o { color: var(--player-o-color); }
+
+.cell:hover { background-color: var(--cell-hover-bg); }
+.cell.x:hover, .cell.o:hover {
+  background-color: inherit;
+  cursor: not-allowed;
+}
+
+.restart-btn {
+  padding: 10px 20px; /* Adjust size */
+  font-size: 1em;
+  color: var(--text-color);
+  background-color: var(--button-bg-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  font-weight: 500;
+}
+.restart-btn:hover { background-color: var(--button-hover-bg-color); }
+.restart-btn:active { transform: scale(0.98); }

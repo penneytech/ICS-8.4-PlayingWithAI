@@ -1,17 +1,38 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Tic Tac Toe (12x12)</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  Hello world
-  <script src="script.js"></script>
+    <div class="game-container">
+        <h1>Mega Tic Tac Toe (6-in-a-Row)</h1>
 
+        <div class="color-selectors">
+            <div class="color-picker">
+                <label for="playerXColor">Player X Color:</label>
+                <input type="color" id="playerXColor" value="#a2d2ff">
+            </div>
+            <div class="color-picker">
+                <label for="playerOColor">Player O Color:</label>
+                <input type="color" id="playerOColor" value="#ffafcc">
+            </div>
+        </div>
+
+        <div id="scoreBoard" class="score-board">
+             <span id="scoreXDisplay" class="score-x">X: 0</span> | <span id="scoreODisplay" class="score-o">O: 0</span>
+        </div>
+
+        <div id="statusArea" class="status">Player X's turn</div>
+
+        <div id="gameBoard" class="game-board">
+            </div>
+
+        <button id="restartButton" class="restart-btn">Restart Game</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
-
 </html>
